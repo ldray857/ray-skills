@@ -1,0 +1,16 @@
+# Auto-detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Windows-specific scripts require CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Plain text and configuration formats
+*.md text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.csv text eol=lf
