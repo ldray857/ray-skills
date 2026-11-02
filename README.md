@@ -15,7 +15,6 @@ ray-skills/
 |-- geomaster/                        # GIS 与遥感科研工作流
 |-- humanizer/                        # 英文文本去 AI 腔调与自然润色
 |-- humanizer-zh/                     # 中文文本去套话与表达润色
-|-- pdf/                              # PDF 提取、表单填写与页面操作
 |-- pdf-gem/                          # PDF 高精度表单填写与校验工具
 |-- performance/                      # 前端性能分析与 Web Vitals 优化
 |-- planning-with-files/              # 本地文件长任务规划与进度跟踪
@@ -36,61 +35,77 @@ ray-skills/
 
 ## 包含的 Skills
 
-仓库共包含 18 个技能，按使用场景分类如下：
+仓库共包含 17 个技能，按使用场景分类如下：
 
 ### 1. 安全防误删
 - **accidental-data-loss-prevention**
   在高危删除操作（如 `DROP TABLE`、`TRUNCATE`、无条件 `DELETE` 或全盘递归删除）前拦截并要求人工确认，防止 Agent 误删关键文件或数据库。
+  来源：[GoogleCloudPlatform/data-agent-kit-plugin](https://github.com/GoogleCloudPlatform/data-agent-kit-plugin)
 
 ### 2. 任务规划与技能开发
 - **planning-with-files**
   在工作目录生成并维护 `task_plan.md`、`findings.md` 和 `progress.md`，用于多步骤复杂任务的状态跟踪，防止 Agent 在长会话中遗忘进度。
+  来源：[OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files)
 - **skill-creator**
   用于创建、评测和优化 Skill，包含标准目录规范、评测集（evals）与描述词优化流程。
+  来源：[anthropics/skills](https://github.com/anthropics/skills) (`skills/skill-creator`)
 - **find-skills**
   通过 `skills.sh` 检索和安装社区已有的 Agent 技能。
+  来源：[vercel-labs/skills](https://github.com/vercel-labs/skills) (`skills/find-skills`)
 
 ### 3. 文本与去 AI 味
 - **humanizer**
   针对英文文本，去除常见模板化句式和空话，使语言更符合自然母语习惯。
+  来源：[blader/humanizer](https://github.com/blader/humanizer)
 - **humanizer-zh**
   针对中文文本，消除翻译腔、官话套话和机械并列，使文笔自然通畅。
+  来源：[op7418/Humanizer-zh](https://github.com/op7418/Humanizer-zh)
 
 ### 4. Office 与文档处理
+微调后的 Office 文档处理技能（源自 Anthropic 官方 Skills）：
+
 - **docx-gem**
   Word（.docx / .dotx）新建与就地修改，内置 XML 节点级编辑与 XSD 模式校验。
+  来源：基于 [anthropics/skills](https://github.com/anthropics/skills) (`skills/docx`) 定制微调
 - **xlsx-gem**
   Excel（.xlsx / .csv）表格处理，支持公式计算、格式化、复杂数据清洗与重新计算。
+  来源：基于 [anthropics/skills](https://github.com/anthropics/skills) (`skills/xlsx`) 定制微调
 - **pptx-gem**
   PowerPoint（.pptx）演示文稿生成与修改，包含大纲排版、幻灯片布局与主题设置。
-- **pdf**
-  Anthropic 官方的 PDF 处理工具，支持文本提取、页面分割合并与表单填写。
+  来源：基于 [anthropics/skills](https://github.com/anthropics/skills) (`skills/pptx`) 定制微调
 - **pdf-gem**
   基于坐标与视觉校验的 PDF 表单填写与字段定位工具。
+  来源：基于 [anthropics/skills](https://github.com/anthropics/skills) (`skills/pdf`) 定制微调
 
 ### 5. 前端与界面设计
 - **ui-ux-pro-max**
   UI/UX 设计参考规范，整理了调色板、字体排版、主流前端框架组件与无障碍（WCAG）设计建议。
+  来源：[nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
 - **frontend-design**
   前端界面设计指导，用于构建层次清晰、细节精致的 Web 页面。
+  来源：[anthropics/skills](https://github.com/anthropics/skills) (`skills/frontend-design`)
 - **performance**
   Web 性能分析与优化指南，关注首屏渲染与 Core Web Vitals 指标。
+  来源：[addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills) (`skills/performance`)
 
 ### 6. Python 与科研工程
 - **geomaster**
   GIS 与遥感科研工作流，支持 GDAL、Rasterio、坐标系转换、时空数据与遥感影像处理。
+  来源：[K-Dense-AI/scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills) (`skills/geomaster`)
 - **python-code-style**
   Python 代码风格、格式化规范、命名约定与文档编写标准。
+  来源：[wshobson/agents](https://github.com/wshobson/agents) (`plugins/python-development/skills/python-code-style`)
 - **python-testing-patterns**
   基于 pytest 的单元测试编写策略、Fixtures 组织与 Mock 测试模式。
+  来源：[wshobson/agents](https://github.com/wshobson/agents) (`plugins/python-development/skills/python-testing-patterns`)
 - **pytorch-patterns**
   PyTorch 深度学习开发模式，包含随机种子设定、设备无关代码写法、显存控制与标准训练循环。
+  来源：[wshobson/agents](https://github.com/wshobson/agents) (`plugins/python-development/skills/pytorch-patterns`)
 
----
 
-## Windows 常用 MCP 配置
 
-在 Windows 环境下配合 Agent 使用时，以下几个 MCP 比较实用：
+## 常用 MCP 配置
+
 
 1. **codegraph**
    - 用于代码语义分析与调用关系查询，基于 AST 提取函数定义、调用者（callers）和引用，帮助 Agent 在代码库中快速定位，减少上下文开销。

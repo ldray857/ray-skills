@@ -24,26 +24,106 @@ SOFTWARE.
 Third-Party Notices & Attribution
 ================================================================================
 
-This repository contains curated collections of third-party agent skills.
-Each skill maintains its original license, copyright notices, and terms:
+This repository contains curated collections, packaging, and adaptations of
+third-party agent skills. The MIT License above applies to the repository structure,
+curation, documentation, and original adaptation scripts authored by ldray857.
 
-1. accidental-data-loss-prevention: Apache-2.0 (Google)
-2. docx-gem: Anthropic Terms of Service (Anthropic)
-3. find-skills: Apache-2.0 / MIT (Vercel Labs)
-4. frontend-design: Apache-2.0 (Anthropic)
-5. geomaster: MIT License
-6. humanizer: MIT License (Siqi Chen)
-7. humanizer-zh: MIT License (op7418 / 歌者)
-8. pdf: Apache-2.0 / Anthropic Terms (Anthropic)
-9. pdf-gem: Anthropic Terms of Service (Anthropic)
-10. performance: Apache-2.0 / MIT (Addy Osmani)
-11. planning-with-files: MIT License (Othman Adi)
-12. pptx-gem: Anthropic Terms of Service (Anthropic)
-13. python-code-style: MIT / Apache-2.0
-14. python-testing-patterns: MIT / Apache-2.0
-15. pytorch-patterns: Apache-2.0 / MIT (ECC)
-16. skill-creator: Apache-2.0 (Anthropic)
-17. ui-ux-pro-max: Apache-2.0 / MIT (NextLevelBuilder)
-18. xlsx-gem: Anthropic Terms of Service (Anthropic)
+Each individual skill is distributed under its respective upstream license and terms.
+Please refer to the respective subdirectories for full upstream license texts and notices.
 
-Please refer to the respective subdirectories for the full upstream license terms.
+--------------------------------------------------------------------------------
+1. MIT Licensed Skills
+--------------------------------------------------------------------------------
+
+- find-skills
+  * Upstream: vercel-labs/skills (https://github.com/vercel-labs/skills)
+  * Copyright (c) Vercel, Inc.
+  * License: MIT License
+
+- geomaster
+  * Upstream: K-Dense-AI/scientific-agent-skills (https://github.com/K-Dense-AI/scientific-agent-skills)
+  * Copyright (c) K-Dense Inc.
+  * License: MIT License
+
+- humanizer
+  * Upstream: blader/humanizer (https://github.com/blader/humanizer)
+  * Copyright (c) 2025 Siqi Chen
+  * License: MIT License
+
+- humanizer-zh
+  * Upstream: op7418/Humanizer-zh (https://github.com/op7418/Humanizer-zh)
+  * Copyright (c) 2026 歌者 (op7418)
+  * License: MIT License
+
+- performance
+  * Upstream: addyosmani/web-quality-skills (https://github.com/addyosmani/web-quality-skills)
+  * Copyright (c) Addy Osmani
+  * License: MIT License
+
+- planning-with-files
+  * Upstream: OthmanAdi/planning-with-files (https://github.com/OthmanAdi/planning-with-files)
+  * Copyright (c) 2025 Othman Adi
+  * License: MIT License
+
+- python-code-style
+  * Upstream: wshobson/agents (https://github.com/wshobson/agents)
+  * Copyright (c) William Hobson
+  * License: MIT License
+
+- python-testing-patterns
+  * Upstream: wshobson/agents (https://github.com/wshobson/agents)
+  * Copyright (c) William Hobson
+  * License: MIT License
+
+- pytorch-patterns
+  * Upstream: wshobson/agents (https://github.com/wshobson/agents)
+  * Copyright (c) William Hobson / ECC
+  * License: MIT License
+
+- ui-ux-pro-max
+  * Upstream: nextlevelbuilder/ui-ux-pro-max-skill (https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+  * Copyright (c) NextLevelBuilder
+  * License: MIT License
+
+--------------------------------------------------------------------------------
+2. Apache License 2.0 Skills
+--------------------------------------------------------------------------------
+
+- accidental-data-loss-prevention
+  * Upstream: GoogleCloudPlatform/data-agent-kit-plugin (https://github.com/GoogleCloudPlatform/data-agent-kit-plugin)
+  * Copyright (c) Google LLC
+  * License: Apache License 2.0
+
+- frontend-design
+  * Upstream: anthropics/skills (https://github.com/anthropics/skills)
+  * Copyright (c) Anthropic, PBC
+  * License: Apache License 2.0
+
+- skill-creator
+  * Upstream: anthropics/skills (https://github.com/anthropics/skills)
+  * Copyright (c) Anthropic, PBC
+  * License: Apache License 2.0
+
+--------------------------------------------------------------------------------
+3. Anthropic Proprietary / Reference Skills (Source-Available)
+--------------------------------------------------------------------------------
+
+The following skills are reference implementations provided by Anthropic, PBC.
+Their use is governed by Anthropic's Commercial / Consumer Terms of Service
+(see individual LICENSE.txt in each subdirectory):
+
+- docx-gem (adapted from anthropics/skills --skill docx)
+  * Copyright (c) 2025 Anthropic, PBC. All rights reserved.
+  * Terms: https://www.anthropic.com/legal/consumer-terms / commercial-terms
+
+- pdf-gem (adapted from anthropics/skills --skill pdf)
+  * Copyright (c) 2025 Anthropic, PBC. All rights reserved.
+  * Terms: https://www.anthropic.com/legal/consumer-terms / commercial-terms
+
+- pptx-gem (adapted from anthropics/skills --skill pptx)
+  * Copyright (c) 2025 Anthropic, PBC. All rights reserved.
+  * Terms: https://www.anthropic.com/legal/consumer-terms / commercial-terms
+
+- xlsx-gem (adapted from anthropics/skills --skill xlsx)
+  * Copyright (c) 2025 Anthropic, PBC. All rights reserved.
+  * Terms: https://www.anthropic.com/legal/consumer-terms / commercial-terms
