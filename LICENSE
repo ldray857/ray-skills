@@ -28,15 +28,22 @@ This repository contains curated collections of third-party agent skills.
 Each skill maintains its original license, copyright notices, and terms:
 
 1. accidental-data-loss-prevention: Apache-2.0 (Google)
-2. find-skills: Apache-2.0 / MIT (Vercel Labs)
-3. frontend-design: Apache-2.0 (Anthropic)
-4. humanizer: MIT License (Siqi Chen)
-5. humanizer-zh: MIT License (op7418 / 歌者)
-6. pdf: Apache-2.0 (Anthropic)
-7. performance: Apache-2.0 / MIT (Addy Osmani)
-8. planning-with-files: MIT License (Othman Adi)
-9. pytorch-patterns: Apache-2.0 / MIT (ECC)
-10. skill-creator: Apache-2.0 (Anthropic)
-11. ui-ux-pro-max: Apache-2.0 / MIT (NextLevelBuilder)
+2. docx-gem: Anthropic Terms of Service (Anthropic)
+3. find-skills: Apache-2.0 / MIT (Vercel Labs)
+4. frontend-design: Apache-2.0 (Anthropic)
+5. geomaster: MIT License
+6. humanizer: MIT License (Siqi Chen)
+7. humanizer-zh: MIT License (op7418 / 歌者)
+8. pdf: Apache-2.0 / Anthropic Terms (Anthropic)
+9. pdf-gem: Anthropic Terms of Service (Anthropic)
+10. performance: Apache-2.0 / MIT (Addy Osmani)
+11. planning-with-files: MIT License (Othman Adi)
+12. pptx-gem: Anthropic Terms of Service (Anthropic)
+13. python-code-style: MIT / Apache-2.0
+14. python-testing-patterns: MIT / Apache-2.0
+15. pytorch-patterns: Apache-2.0 / MIT (ECC)
+16. skill-creator: Apache-2.0 (Anthropic)
+17. ui-ux-pro-max: Apache-2.0 / MIT (NextLevelBuilder)
+18. xlsx-gem: Anthropic Terms of Service (Anthropic)
 
 Please refer to the respective subdirectories for the full upstream license terms.

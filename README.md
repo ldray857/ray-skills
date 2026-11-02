@@ -1,146 +1,111 @@
-# ray-skills: Windows 环境 Agent 优质 Skills 与 MCP 精选实战指南
+# ray-skills
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Platform: Windows](https://img.shields.io/badge/Platform-Windows%2010%20%2F%2011-0078D6.svg)](https://microsoft.com/windows)
-[![Agent: Antigravity | Claude | Cline](https://img.shields.io/badge/Agent-Antigravity%20%7C%20Claude%20%7C%20Cline-8A2BE2.svg)](#)
-
-本项目是一套面向 **Windows 开发者与 Agent 用户** 精心整理与调优的智能体扩展资源库，涵盖 **核心 Skills（智能体技能）**、**优选 MCP（模型上下文协议）服务器** 以及专门针对 **Windows 操作系统运行 Agent 的实战避坑与配置指南**。
-
-适用于 Google Antigravity、Claude Desktop、Cline、Roo Code、Cursor 等支持 Skills 或 MCP 协议的主流智能体应用。
+在 Windows 环境下运行 AI Agent（如 Antigravity、Claude Code、Cursor、Cline 等）时收集整理的一些常用 Skills 和 MCP 配置，顺便记录了 Windows 环境下的配置方法与踩坑经验。
 
 ---
 
-## 目录
-
-- [一、项目结构](#一项目结构)
-- [二、精选 Skills 清单与解析](#二精选-skills-清单与解析)
-  - [1. 系统安全与防灾](#1-系统安全与防灾)
-  - [2. 任务规划与生态扩展](#2-任务规划与生态扩展)
-  - [3. 文案润色与去 AI 感](#3-文案润色与去-ai-感)
-  - [4. Office 与电子文档处理](#4-office-与电子文档处理)
-  - [5. 前端架构与 UI/UX 体验](#5-前端架构与-uiux-体验)
-  - [6. Python 与深度学习工程](#6-python-与深度学习工程)
-- [三、Windows 优选 MCP 推荐与配置模版](#三windows-优选-mcp-推荐与配置模版)
-  - [1. 代码架构分析: codegraph](#1-代码架构分析-codegraph)
-  - [2. Windows 全盘秒级检索: everything-mcp](#2-windows-全盘秒级检索-everything-mcp)
-  - [3. 文件系统访问: @modelcontextprotocol/server-filesystem](#3-文件系统访问-modelcontextprotocolserver-filesystem)
-  - [4. 客户端配置模板示例](#4-客户端配置模板示例)
-- [四、Windows 运行 Agent 实战避坑指南](#四windows-运行-agent-实战避坑指南)
-  - [1. 路径反斜杠转义与正斜杠推荐](#1-路径反斜杠转义与正斜杠推荐)
-  - [2. 终端编码与 UTF-8 强制规范](#2-终端编码与-utf-8-强制规范)
-  - [3. PowerShell 执行策略配置](#3-powershell-执行策略配置)
-  - [4. POSIX Shell 钩子脚本在 Windows 上的适配](#4-posix-shell-钩子脚本在-windows-上的适配)
-- [五、安装与使用方式](#五安装与使用方式)
-- [六、开源协议与版权致谢](#六开源协议与版权致谢)
-
----
-
-## 一、项目结构
+## 目录结构
 
 ```text
 ray-skills/
-|-- accidental-data-loss-prevention/  # [安全防灾] 高危删除/截断操作确认拦截器
-|-- find-skills/                       # [通用扩展] 开放技能生态检索与安装工具
-|-- frontend-design/                   # [前端设计] 高审美、反平庸的前端界面指导规范
-|-- humanizer/                         # [写作润色] 英文去 AI 味与自然书写转换
-|-- humanizer-zh/                      # [写作润色] 中文去模板化与通畅表达优化
-|-- pdf/                               # [文档处理] PDF 提取、表单填写与页面操作工具
-|-- performance/                       # [前端调优] Web 性能审计与 Core Web Vitals 优化
-|-- planning-with-files/               # [长程规划] 磁盘持久化多步骤研发任务规划
-|-- pytorch-patterns/                  # [深度学习] PyTorch 训练、数据管道与可复现模式
-|-- skill-creator/                     # [技能开发] 编写、评测与调优 Agent Skill 标准套件
-|-- ui-ux-pro-max/                     # [全栈界面] UI/UX 风格、调色板、无障碍系统规范
-|-- .gitattributes                     # 跨平台换行符规范配置
-|-- .gitignore                         # Windows/Python/Node 缓存与忽略规则
+|-- accidental-data-loss-prevention/  # 高危删除与截断操作拦截
+|-- docx-gem/                         # Word 文档处理（XML 级编辑与格式校验）
+|-- find-skills/                      # 社区技能生态检索与安装工具
+|-- frontend-design/                  # 前端设计风格与界面规范
+|-- geomaster/                        # GIS 与遥感科研工作流
+|-- humanizer/                        # 英文文本去 AI 腔调与自然润色
+|-- humanizer-zh/                     # 中文文本去套话与表达润色
+|-- pdf/                              # PDF 提取、表单填写与页面操作
+|-- pdf-gem/                          # PDF 高精度表单填写与校验工具
+|-- performance/                      # 前端性能分析与 Web Vitals 优化
+|-- planning-with-files/              # 本地文件长任务规划与进度跟踪
+|-- pptx-gem/                         # PowerPoint 幻灯片排版与自动生成
+|-- python-code-style/                # Python 代码规范与格式化标准
+|-- python-testing-patterns/          # 基于 pytest 的单元测试模式
+|-- pytorch-patterns/                 # PyTorch 训练模式与可复现工程规范
+|-- skill-creator/                    # 编写与评测 Agent Skill 的规范工具
+|-- ui-ux-pro-max/                    # UI/UX 设计库与组件规范
+|-- xlsx-gem/                         # Excel/CSV 表格构建、公式运算与清洗
+|-- .gitattributes                     # 换行符规则配置
+|-- .gitignore                         # 缓存与临时文件过滤
 |-- LICENSE                            # MIT 开源协议与第三方致谢
-`-- README.md                          # 本说明文档
+`-- README.md                          # 说明文档
 ```
 
 ---
 
-## 二、精选 Skills 清单与解析
+## 包含的 Skills
 
-### 1. 系统安全与防灾
+仓库共包含 18 个技能，按使用场景分类如下：
 
+### 1. 安全防误删
 - **accidental-data-loss-prevention**
-  - **来源**：Google Internal / Antigravity Built-in
-  - **功能**：高危删除与破坏性操作拦截器。在智能体尝试执行如 `DROP TABLE`、`TRUNCATE`、无条件 `DELETE`、云存储清空或本地系统级递归强制删除命令前，强制中断执行并向用户请求显式授权确认。
-  - **Windows 场景价值**：Windows 下 PowerShell 的 `Remove-Item -Recurse -Force` 不经过回收站，一旦 Agent 误判可能造成灾难性数据丢失，本技能是 Windows 平台保命必备。
+  在高危删除操作（如 `DROP TABLE`、`TRUNCATE`、无条件 `DELETE` 或全盘递归删除）前拦截并要求人工确认，防止 Agent 误删关键文件或数据库。
 
-### 2. 任务规划与生态扩展
-
+### 2. 任务规划与技能开发
 - **planning-with-files**
-  - **来源**：[othmanadi/planning-with-files](https://github.com/othmanadi/planning-with-files)
-  - **功能**：通过在工作区根目录持久化维护 `task_plan.md`、`findings.md` 和 `progress.md`，实现多轮对话中的状态记忆与计划跟踪。适用于 5 步以上工具调用的复杂工程研发。
+  在工作目录生成并维护 `task_plan.md`、`findings.md` 和 `progress.md`，用于多步骤复杂任务的状态跟踪，防止 Agent 在长会话中遗忘进度。
 - **skill-creator**
-  - **来源**：[anthropics/skills](https://github.com/anthropics/skills)
-  - **功能**：标准化创建、改进与优化 Agent Skill 的完整指南，包含编写符合规范的 `SKILL.md`、编写自动化 Evals 评测集及优化描述词触发率。
+  用于创建、评测和优化 Skill，包含标准目录规范、评测集（evals）与描述词优化流程。
 - **find-skills**
-  - **来源**：[vercel-labs/skills](https://github.com/vercel-labs/skills)
-  - **功能**：快速检索 skills.sh 开放生态中的现成技能，方便通过 `npx skills add` 快速扩充 Agent 功能。
+  通过 `skills.sh` 检索和安装社区已有的 Agent 技能。
 
-### 3. 文案润色与去 AI 感
-
+### 3. 文本与去 AI 味
 - **humanizer**
-  - **来源**：[blader/humanizer](https://github.com/blader/humanizer)
-  - **功能**：消除英文生成内容中的典型 AI 腔调（如 not-X-but-Y、机械的三段式、滥用破折号、空洞套话），重构为贴合自然母语者的写作风格。
+  针对英文文本，去除常见模板化句式和空话，使语言更符合自然母语习惯。
 - **humanizer-zh**
-  - **来源**：[op7418/Humanizer-zh](https://github.com/op7418/Humanizer-zh)
-  - **功能**：消除中文文本中的空话、套话、层级并列过多及机械翻译腔，保留事实与作者立场，使中文输出流畅通顺。
+  针对中文文本，消除翻译腔、官话套话和机械并列，使文笔自然通畅。
 
-### 4. Office 与电子文档处理
+### 4. Office 与文档处理
+- **docx-gem**
+  Word（.docx / .dotx）新建与就地修改，内置 XML 节点级编辑与 XSD 模式校验。
+- **xlsx-gem**
+  Excel（.xlsx / .csv）表格处理，支持公式计算、格式化、复杂数据清洗与重新计算。
+- **pptx-gem**
+  PowerPoint（.pptx）演示文稿生成与修改，包含大纲排版、幻灯片布局与主题设置。
+- **pdf**
+  Anthropic 官方的 PDF 处理工具，支持文本提取、页面分割合并与表单填写。
+- **pdf-gem**
+  基于坐标与视觉校验的 PDF 表单填写与字段定位工具。
 
-- **pdf**（本项目已包含完整工具链）
-  - **来源**：[anthropics/skills](https://github.com/anthropics/skills)
-  - **功能**：PDF 结构化内容提取、复杂表格解析、页面合并与分割、表单填充、文档水印及附带的 Python 处理脚本。
-- **官方生态推荐（外部拓展）**：
-  - **docx**（Word 文档生成与修改，保留格式与修订）
-  - **xlsx**（Excel 表格构建、复杂公式运算与清洗）
-  - **pptx**（PowerPoint 自动排版、大纲生成与幻灯片构建）
-  - 以上三项可直接参考或从 [anthropics/skills](https://github.com/anthropics/skills) 获取。
-
-### 5. 前端架构与 UI/UX 体验
-
+### 5. 前端与界面设计
 - **ui-ux-pro-max**
-  - **来源**：[nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
-  - **功能**：全栈设计系统智库。内置数十种设计风格体系、色彩调色板规范、字体排版指南、WCAG 2.1 无障碍标准与图表规范，避免 AI 生成千篇一律的粗糙界面。
+  UI/UX 设计参考规范，整理了调色板、字体排版、主流前端框架组件与无障碍（WCAG）设计建议。
 - **frontend-design**
-  - **来源**：[anthropics/skills](https://github.com/anthropics/skills)
-  - **功能**：指导智能体建立具备高辨识度与现代美感的前端架构，重点在微交互、视效层次与品牌一致性。
+  前端界面设计指导，用于构建层次清晰、细节精致的 Web 页面。
 - **performance**
-  - **来源**：[addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills)
-  - **功能**：Web 性能审计调优，提供 Core Web Vitals 指标深度分析与首屏渲染优化方案。
+  Web 性能分析与优化指南，关注首屏渲染与 Core Web Vitals 指标。
 
-### 6. Python 与深度学习工程
-
+### 6. Python 与科研工程
+- **geomaster**
+  GIS 与遥感科研工作流，支持 GDAL、Rasterio、坐标系转换、时空数据与遥感影像处理。
+- **python-code-style**
+  Python 代码风格、格式化规范、命名约定与文档编写标准。
+- **python-testing-patterns**
+  基于 pytest 的单元测试编写策略、Fixtures 组织与 Mock 测试模式。
 - **pytorch-patterns**
-  - **功能**：PyTorch 深度学习开发规约。涵盖跨硬件无缝适配（Device-agnostic）、多随机数种子设定（全面可复现性）、显存管理与梯度优化、标准化训练循环及数据加载最佳实践。
+  PyTorch 深度学习开发模式，包含随机种子设定、设备无关代码写法、显存控制与标准训练循环。
 
 ---
 
-## 三、Windows 优选 MCP 推荐与配置模版
+## Windows 常用 MCP 配置
 
-MCP（Model Context Protocol）是连接大模型与本地系统的标准桥梁。在 Windows 系统下，推荐配置以下三大核心 MCP：
+在 Windows 环境下配合 Agent 使用时，以下几个 MCP 比较实用：
 
-### 1. 代码架构分析: codegraph
+1. **codegraph**
+   - 用于代码语义分析与调用关系查询，基于 AST 提取函数定义、调用者（callers）和引用，帮助 Agent 在代码库中快速定位，减少上下文开销。
+   - 仓库：[colbymchenry/codegraph](https://github.com/colbymchenry/codegraph)
 
-- **仓库**：[colbymchenry/codegraph](https://github.com/colbymchenry/codegraph)
-- **定位**：代码语义分析与调用图谱服务。
-- **特点**：基于 AST 解析代码符号依赖，支持在无需让 Agent 通读全部源码的情况下，秒级查询函数定义、调用者（callers）、被调用者（callees）以及改动影响面（impact analysis），极大地节省 Token 并提升定位准确度。
+2. **everything-mcp**
+   - 接入本地 Everything 搜索服务，实现全盘快速文件名检索。Windows 原生文件遍历较慢，配合 Everything 可以大幅提高文件查找效率。
+   - 依赖：本地需要运行 Everything 客户端。
 
-### 2. Windows 全盘秒级检索: everything-mcp
+3. **server-filesystem**
+   - 官方提供的本地文件系统访问服务，配置指定的允许访问路径即可。
 
-- **定位**：基于 Windows 平台标杆搜索神器 **Voidtools Everything** 的 MCP 服务。
-- **特点**：Windows 传统的文件遍历工具在目录深度大时非常耗时，通过 Everything 的本地索引服务，Agent 可以在几十毫秒内定位全盘任意文件、路径或正则表达式匹配项。
+### 配置文件示例
 
-### 3. 文件系统访问: @modelcontextprotocol/server-filesystem
-
-- **定位**：官方本地文件读写与目录管理服务。
-- **特点**：允许 Agent 安全地在允许的本地工作区进行目录树浏览、文件读写与差异审查。
-
-### 4. 客户端配置模板示例
-
-以下为 Windows 环境下的标准配置片段，适用于 Claude Desktop（`%APPDATA%\Claude\claude_desktop_config.json`）、Antigravity 或支持 MCP 的扩展应用：
+以 Claude Desktop 配置（`%APPDATA%\Claude\claude_desktop_config.json`）为例：
 
 ```json
 {
@@ -168,70 +133,53 @@ MCP（Model Context Protocol）是连接大模型与本地系统的标准桥梁�
 }
 ```
 
----
-
-## 四、Windows 运行 Agent 实战避坑指南
-
-### 1. 路径反斜杠转义与正斜杠推荐
-
-- **陷阱**：Windows 原生使用反斜杠 `\`。在 JSON 配置文件中，单个反斜杠会被解析为转义符，导致路径失效（例如 `D:\tools` 会被解析为制表符）。
-- **规范**：
-  - **推荐写法**：在所有配置文件与代码中，统一使用正斜杠 `/`（例如 `D:/PClog/ray-skills`），现代 Windows API 与主流运行库（Node.js / Python / Go）均完全支持。
-  - **JSON 转义写法**：若必须使用反斜杠，务必双写转义（`D:\\PClog\\ray-skills`）。
-
-### 2. 终端编码与 UTF-8 强制规范
-
-- **陷阱**：中文版 Windows 的 CMD / PowerShell 默认代码页通常为 `936 (GBK)`，当 Agent 捕获终端输出或执行包含中文的文件读写时，极易产生乱码甚至解析崩溃。
-- **对策**：
-  - 设置 Python 环境变量启用全局 UTF-8：`$env:PYTHONUTF8=1`
-  - 在 PowerShell 会话前可设置代码页：`[Console]::OutputEncoding = [System.Text.Encoding]::UTF8` 或 `chcp 65001`
-  - 源码文件严格保存为无 BOM 的 UTF-8 格式。
-
-### 3. PowerShell 执行策略配置
-
-- **陷阱**：在未配置策略的 Windows 系统中，执行 `npx`、`.ps1` 脚本时常遇到 `UnauthorizedAccess` 或脚本禁止运行报错。
-- **对策**：使用当前用户作用域放宽策略（无需管理员权限）：
-  ```powershell
-  Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-  ```
-
-### 4. POSIX Shell 钩子脚本在 Windows 上的适配
-
-- **陷阱**：部分开源技能（如 `planning-with-files`）内置了生命周期钩子脚本（`.sh` 格式），在 Windows 纯 PowerShell 环境下直接调用可能报错找不到 `sh`。
-- **对策**：
-  - 确保安装了 Git for Windows，并将 `C:\Program Files\Git\bin`（或 `usr\bin`）加入系统 PATH，以便命令行中可识别 `sh`。
-  - 或在不支持 Bash Hook 的平台中，直接依靠技能说明中的文件规约手动维护规划文件。
+> 提示：在 Windows 下通过 `cmd.exe /c npx ...` 启动可以避免很多由于找不到 `.cmd` 或执行权限产生的问题。
 
 ---
 
-## 五、安装与使用方式
+## Windows 环境踩坑记录
 
-### 方式一：直接载入本地目录（推荐）
+在 Windows 上跑 Agent 容易遇到一些平台特有的细节问题，记录如下：
 
-1. 将本仓库克隆至你的本地目录：
-   ```powershell
-   git clone https://github.com/ldray857/ray-skills.git D:/PClog/ray-skills
-   ```
-2. 将需要的技能目录（如 `planning-with-files`、`pdf` 等）复制到你所用 Agent 的技能存放目录：
-   - **Antigravity / Gemini CLI**：`%USERPROFILE%\.gemini\antigravity\skills\`
-   - **Claude Desktop / Claude Code**：`%USERPROFILE%\.claude\skills\`
-   - **项目级局部启用**：直接将对应目录放置在项目根目录下的 `.agent/skills/` 或 `.claude/skills/` 中。
+### 1. 路径斜杠与 JSON 转义
+Windows 原生使用反斜杠 `\`，在 JSON 配置文件中如果写成单反斜杠（如 `"D:\tools"`），`\t` 会被当作制表符解析导致路径错误。
+建议在所有配置文件中统一使用正斜杠 `/`（例如 `"D:/PClog/ray-skills"`），Windows 系统和 Node.js / Python 运行时均完全兼容。若使用反斜杠，需写成双反斜杠 `\\`。
 
-### 方式二：通过开放生态动态安装
+### 2. 控制台编码与中文乱码
+中文版 Windows 的 CMD / PowerShell 默认代码页一般是 936 (GBK)，当 Agent 执行命令或捕获脚本输出时，中文常会变成乱码。
+解决方式：
+- 设置 Python 环境变量强制使用 UTF-8：`$env:PYTHONUTF8 = "1"`
+- 在 PowerShell 中临时切换代码页：`chcp 65001`
+- 文本文件保存统一使用 UTF-8 编码（无 BOM）。
 
-使用 `find-skills` 发现并安装对应工具：
+### 3. PowerShell 脚本权限限制
+新装系统或未配置策略时，执行脚本或部分 npm 全局命令可能提示受受限策略阻止（`UnauthorizedAccess`）。
+可在当前用户下放宽策略（不需要管理员权限）：
 ```powershell
-npx skills add <skill-name>
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
+### 4. POSIX Shell 脚本调用
+部分来自 Linux/macOS 生态的 Skill 附带了 `.sh` 脚本（例如 `planning-with-files`）。在 Windows 下直接调用会报错找不到 `sh`。
+如果需要运行这些脚本，可以安装 Git for Windows 并将其 `bin` 目录（包含 `sh.exe` 与 `bash.exe`）加入系统环境变量 PATH。
+
 ---
 
-## 六、开源协议与版权致谢
+## 使用方法
 
-- 本项目本身的整理汇编、文档指南及相关配置文件采用 [MIT License](LICENSE) 协议开源。
-- 仓库内收录的各个第三方 Skills 均严格保留原作者的版权声明与开源协议：
-  - Anthropic 官方技能 (`frontend-design`, `pdf`, `skill-creator`) 遵循 Apache-2.0 协议；
-  - Google 官方技能 (`accidental-data-loss-prevention`) 遵循 Apache-2.0 协议；
-  - 社区开源技能 (`humanizer`, `humanizer-zh`, `planning-with-files`, `ui-ux-pro-max` 等) 遵循各自独立的 MIT / Apache-2.0 协议。
+### 本地直接引入
+克隆仓库到本地：
+```powershell
+git clone https://github.com/ldray857/ray-skills.git
+```
+根据你使用的 Agent 工具，把需要的技能目录复制到对应的技能存放路径即可：
+- Antigravity: `%USERPROFILE%\.gemini\antigravity\skills\`
+- Claude Desktop / Claude Code: `%USERPROFILE%\.claude\skills\`
+- 项目目录内独立启用: 直接放到项目根目录下的 `.claude/skills/` 或 `.agent/skills/`。
 
-感谢所有上游开源创作者为 AI Agent 生态繁荣做出的贡献。
+---
+
+## 许可证与致谢
+
+- 本仓库整理与文档内容采用 [MIT License](LICENSE) 许可。
+- 各 Skill 保持各自原作者的开源许可证，详细声明请查看根目录 [LICENSE](LICENSE) 以及各子目录下的说明。
