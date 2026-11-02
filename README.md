@@ -1,6 +1,6 @@
 # ray-skills
 
-在 Windows 环境下运行 AI Agent（如 Antigravity、Claude Code、Cursor、Cline 等）时收集整理的一些常用 Skills 和 MCP 配置，顺便记录了 Windows 环境下的配置方法与踩坑经验。
+收集整理的一些在 Windows 环境下运行 AI 常用 Skills 和 MCP 配置。
 
 ---
 
@@ -96,50 +96,10 @@ ray-skills/
    - 用于代码语义分析与调用关系查询，基于 AST 提取函数定义、调用者（callers）和引用，帮助 Agent 在代码库中快速定位，减少上下文开销。
    - 仓库：[colbymchenry/codegraph](https://github.com/colbymchenry/codegraph)
 
-2. **everything-mcp**
-   - 接入本地 Everything 搜索服务，实现全盘快速文件名检索。Windows 原生文件遍历较慢，配合 Everything 可以大幅提高文件查找效率。
-   - 依赖：本地需要运行 Everything 客户端。
-
-3. **server-filesystem**
-   - 官方提供的本地文件系统访问服务，配置指定的允许访问路径即可。
-
-### 配置文件示例
-
-以 Claude Desktop 配置（`%APPDATA%\Claude\claude_desktop_config.json`）为例：
-
-```json
-{
-  "mcpServers": {
-    "codegraph": {
-      "command": "cmd.exe",
-      "args": ["/c", "npx", "-y", "@colbymchenry/codegraph"]
-    },
-    "everything": {
-      "command": "cmd.exe",
-      "args": ["/c", "npx", "-y", "everything-mcp"]
-    },
-    "filesystem": {
-      "command": "cmd.exe",
-      "args": [
-        "/c",
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "D:/PClog",
-        "D:/workspace"
-      ]
-    }
-  }
-}
-```
-
-> 提示：在 Windows 下通过 `cmd.exe /c npx ...` 启动可以避免很多由于找不到 `.cmd` 或执行权限产生的问题。
 
 ---
 
-## Windows 环境踩坑记录
-
-在 Windows 上跑 Agent 容易遇到一些平台特有的细节问题，记录如下：
+## Windows 环境
 
 ### 1. 路径斜杠与 JSON 转义
 Windows 原生使用反斜杠 `\`，在 JSON 配置文件中如果写成单反斜杠（如 `"D:\tools"`），`\t` 会被当作制表符解析导致路径错误。
@@ -165,19 +125,11 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 ---
 
-## 使用方法
+## 克隆仓库到本地
 
-### 本地直接引入
-克隆仓库到本地：
 ```powershell
 git clone https://github.com/ldray857/ray-skills.git
 ```
-根据你使用的 Agent 工具，把需要的技能目录复制到对应的技能存放路径即可：
-- Antigravity: `%USERPROFILE%\.gemini\antigravity\skills\`
-- Claude Desktop / Claude Code: `%USERPROFILE%\.claude\skills\`
-- 项目目录内独立启用: 直接放到项目根目录下的 `.claude/skills/` 或 `.agent/skills/`。
-
----
 
 ## 许可证与致谢
 
