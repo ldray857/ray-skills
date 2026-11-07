@@ -28,6 +28,12 @@
 内置 office 系列 skill 位于：`D:\apps_ide\DSH\resources\runtime\office-skills\`
 
 
+## 前端开发
+- 主动调用下述用于前端审美的skill：
+  - frontend-design 负责整体审美方向
+  - ui-ux-pro-max 提供具体设计决策与检索资料
+
+
 ## Python 开发规范
 - Conda 环境：虚拟环境位于 D:\Anaconda\envs，Base 位于 D:\Anaconda3，你默认使用名为read的环境。
 - 隔离红线：
@@ -46,5 +52,4 @@
   - PostgreSQL 16.14: D:\app_file\Postgresql（端口 5432，密码 （待填入））+ PostGIS 3.6.2。注意未激活环境时显式调用 D:\app_file\Postgresql\bin\pg_config.exe。
   - OpenJDK 17: D:\apps_others\java\
   - Node.js v26.8: C:\Program Files\nodejs
-  - .NET SDK 10.0: C:\Program Files\dotnet\。
   - 排版与构建工具：Git, Pandoc (D:\app_file\Pandoc\), MiKTeX (D:\app_file\MikTex\), Ghostscript, Prince。

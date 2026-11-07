@@ -1,6 +1,6 @@
 # ray-skills
 
-收集整理的一些在 Windows 环境下运行 AI 常用 Skills 和 MCP 配置。
+收集整理的一些在 Windows 环境下运行 Agent 常用 Skills 和 MCP 配置。
 
 ---
 
@@ -8,7 +8,7 @@
 
 ```text
 |-- u-skills/                         # 推荐的skills
-|-- rules/                            # 一些Agent 的全局规则文件
+|-- rules/                            # 一些推荐的规则文件
 |-- .gitattributes                     # 换行符规则配置
 |-- .gitignore                         # 缓存与临时文件过滤
 |-- LICENSE                            # MIT 开源协议与第三方致谢
