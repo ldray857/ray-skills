@@ -7,24 +7,8 @@
 ## 目录结构
 
 ```text
-ray-skills/
-|-- accidental-data-loss-prevention/  # 高危删除与截断操作拦截
-|-- docx-gem/                         # Word 文档处理（XML 级编辑与格式校验）
-|-- find-skills/                      # 社区技能生态检索与安装工具
-|-- frontend-design/                  # 前端设计风格与界面规范
-|-- geomaster/                        # GIS 与遥感科研工作流
-|-- humanizer/                        # 英文文本去 AI 腔调与自然润色
-|-- humanizer-zh/                     # 中文文本去套话与表达润色
-|-- pdf-gem/                          # PDF 高精度表单填写与校验工具
-|-- performance/                      # 前端性能分析与 Web Vitals 优化
-|-- planning-with-files/              # 本地文件长任务规划与进度跟踪
-|-- pptx-gem/                         # PowerPoint 幻灯片排版与自动生成
-|-- python-code-style/                # Python 代码规范与格式化标准
-|-- python-testing-patterns/          # 基于 pytest 的单元测试模式
-|-- pytorch-patterns/                 # PyTorch 训练模式与可复现工程规范
-|-- skill-creator/                    # 编写与评测 Agent Skill 的规范工具
-|-- ui-ux-pro-max/                    # UI/UX 设计库与组件规范
-|-- xlsx-gem/                         # Excel/CSV 表格构建、公式运算与清洗
+|-- u-skills/                         # 推荐的skills
+|-- rules/                            # 一些Agent 的全局规则文件
 |-- .gitattributes                     # 换行符规则配置
 |-- .gitignore                         # 缓存与临时文件过滤
 |-- LICENSE                            # MIT 开源协议与第三方致谢
